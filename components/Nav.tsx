@@ -43,8 +43,8 @@ export default function Nav() {
       </button>
 
       {/* mobile navbar display */}
-      <div className="bg-white h-dvh absolute w-full top-0 left-0 flex justify-center md:hidden">
-        {navOpen ? (
+      {navOpen ? (
+        <div className="bg-white h-dvh absolute w-full top-0 left-0 flex justify-center md:hidden">
           <div className="flex flex-col items-center text-lg gap-10 pt-20">
             {navStuff.map((item, index) => (
               <Link key={index} href={item.href}>
@@ -52,8 +52,8 @@ export default function Nav() {
               </Link>
             ))}
           </div>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </nav>
   );
 }
