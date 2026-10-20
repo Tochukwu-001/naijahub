@@ -14,8 +14,9 @@ export default function Nav() {
     { label: "Contact", href: "/contact" },
     { label: "Sign In", href: "/signin" },
   ];
+  
   return (
-    <nav className="flex items-center justify-between px-3 md:px-10 py-3 shadow-sm sticky top-0 bg-white">
+    <nav className="flex items-center justify-between px-3 md:px-10 py-3 shadow-sm sticky top-0 bg-white z-50">
       <Link href="/" className="flex items-center gap-1 z-50">
         <Image
           src="/logo.png"
