@@ -3,12 +3,17 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaLock, FaEnvelope, FaArrowLeft } from "react-icons/fa";
 import { auth, signIn } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default async function SignIn() {
 
   const session = await auth()
 
   console.log(session);  
+
+  if(session){
+    redirect("/post")
+  }
 
   return (
     <main className="min-h-dvh bg-[url('/bg.jpg')] bg-no-repeat bg-center bg-cover flex items-center justify-center p-4 md:p-8">
