@@ -2,26 +2,13 @@ import { Theme } from "@/components/Theme";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaLock, FaEnvelope, FaArrowLeft } from "react-icons/fa";
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
 
 export default async function SignIn() {
-  // Server Action for Email/Password Sign In
-  async function handleEmailSignIn(formData: FormData) {
-    "use server";
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const remember = formData.get("remember");
 
-    // Perform server-side login logic (e.g., NextAuth, Firebase Admin, API call)
-    console.log("Signing in with:", { email, password, remember });
-  }
+  const session = await auth()
 
-  // Server Action for Google Sign In
-  async function handleGoogleSignIn() {
-    "use server";
-    // Perform server-side Google OAuth redirect (e.g., await signIn("google"))
-    console.log("Initiating Google Sign-In...");
-  }
+  console.log(session);  
 
   return (
     <main className="min-h-dvh bg-[url('/bg.jpg')] bg-no-repeat bg-center bg-cover flex items-center justify-center p-4 md:p-8">
@@ -73,7 +60,7 @@ export default async function SignIn() {
         </div>
 
         {/* Email & Password Server Form */}
-        <form action={handleEmailSignIn} className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5">
           {/* Email Field */}
           <div className="flex flex-col gap-2">
             <label
