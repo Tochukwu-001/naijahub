@@ -42,9 +42,9 @@ export default function Nav() {
         ))}
       </div>
 
-      <Link href={"/signin"} className="text-lg max-lg:ml-auto">
+      <Link href={session ? "/profile" : "/signin"} className="text-lg max-lg:ml-auto">
         {
-
+            session ? <img src={session.user?.image} alt={session.user?.name}/> : "Sign In"
         }
       </Link>
 
