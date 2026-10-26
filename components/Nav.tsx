@@ -6,14 +6,19 @@ import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 
+interface NavItem {
+  label: string;
+  href: string;
+}
+
 export default function Nav() {
   const [navOpen, setNavOpen] = useState(false);
 
-  const {data: session} = useSession()
+  const { data: session } = useSession();
 
   console.log(session);
 
-  const navStuff: object[] = [
+  const navStuff: NavItem[] = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
@@ -43,9 +48,15 @@ export default function Nav() {
       </div>
 
       <Link href={session ? "/profile" : "/signin"} className="text-lg max-lg:ml-auto">
-        {
-            session ? <img src={session.user?.image} alt={session.user?.name}/> : "Sign In"
-        }
+        {session && session.user?.image ? (
+          <img 
+            src={session.user.image} 
+            alt={session.user?.name || "Profile"} 
+            className="w-8 h-8 rounded-full object-cover"
+          />
+        ) : (
+          "Sign In"
+        )}
       </Link>
 
       <button
@@ -60,7 +71,11 @@ export default function Nav() {
         <div className="bg-white h-dvh absolute w-full top-0 left-0 flex justify-center lg:hidden">
           <div className="flex flex-col items-center text-lg gap-10 pt-20">
             {navStuff.map((item, index) => (
-              <Link key={index} href={item.href}>
+              <Link 
+                key={index} 
+                href={item.href} 
+                onClick={() => setNavOpen(false)}
+              >
                 {item.label}
               </Link>
             ))}
