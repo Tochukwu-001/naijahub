@@ -16,7 +16,7 @@ const singleItem = {
     ...doc.data(),
   };
 
-    
+     
 });
 
         } catch (error) {
