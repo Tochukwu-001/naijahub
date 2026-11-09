@@ -39,7 +39,9 @@ export default async function SignIn() {
             Sign in to access real business insights, costs, and mentors.
           </p>
         </div>
-
+        
+        {/* OAUTH AUTHENTICATION*/}
+    <div>
         {/* Google Sign-In Server Form */}
         <form
           action={async () => {
@@ -55,6 +57,24 @@ export default async function SignIn() {
             <span>Continue with Google</span>
           </button>
         </form>
+       
+        {/*GITHUB SIGNIN FORM !!!!!!!!!!!!!!!*/}
+       
+        <form
+          action={async () => {
+            "use server";
+            await signIn("github");
+          }}
+        >
+          <button
+            type="submit"
+            className="w-full bg-white text-neutral-900 font-semibold py-3.5 px-4 rounded-xl flex items-center justify-center gap-3 hover:bg-neutral-100 transition-all shadow-md text-sm mb-6 cursor-pointer"
+          >
+            <FcGoogle className="text-2xl" />
+            <span>Continue with Github</span>
+          </button>
+        </form>
+    </div>
 
         {/* Divider */}
         <div className="relative flex items-center justify-center mb-6">
